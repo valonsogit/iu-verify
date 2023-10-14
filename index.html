@@ -4,90 +4,900 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERIFY ET1</title>
-    <style>:root{font-size:16px;--color-base-black: #100F0F;--color-base-950: #1C1B1A;--color-base-900: #282726;--color-base-850: #343331;--color-base-800: #403E3C;--color-base-700: #575653;--color-base-600: #6F6E69;--color-base-500: #878580;--color-base-300: #B7B5AC;--color-base-200: #CECDC3;--color-base-150: #DAD8CE;--color-base-100: #E6E4D9;--color-base-50: #F2F0E5;--color-base-paper: #FFFCF0;--color-red: #AF3029;--color-red-light: #D14D41;--color-orange: #BC5215;--color-orange-light: #DA702C;--color-yellow: #AD8301;--color-yellow-light: #D0A215;--color-green: #66800B;--color-green-light: #879A39;--color-cyan: #24837B;--color-cyan-light: #3AA99F;--color-blue: #205EA6;--color-blue-light: #4385BE;--color-purple: #5E409D;--color-purple-light: #8B7EC8;--color-magenta: #A02F6F;--color-magenta-light: #CE5D97}@media (prefers-color-scheme: dark){:root{color-scheme:dark;--bg: var(--color-base-black);--bg-2: var(--color-base-950);--ui: var(--color-base-900);--ui-2: var(--color-base-850);--ui-3: var(--color-base-800);--text-3: var(--color-base-700);--text-2: var(--color-base-500);--text: var(--color-base-200);--orange: var(--color-orange-light);--yellow: var(--color-yellow-light);--green: var(--color-green-light);--cyan: var(--color-cyan-light);--blue: var(--color-blue-light);--purple: var(--color-purple-light);--magenta: var(--color-magenta-light);--red: var(--color-red-light)}}@media (prefers-color-scheme: light){:root{color-scheme:light;--bg: var(--color-base-paper);--bg-2: var(--color-base-50);--ui: var(--color-base-50);--ui-2: var(--color-base-150);--ui-3: var(--color-base-200);--text-3: var(--color-base-300);--text-2: var(--color-base-600);--text: var(--color-base-black);--orange: var(--color-orange-light);--yellow: var(--color-yellow-light);--green: var(--color-green-light);--cyan: var(--color-cyan-light);--blue: var(--color-blue-light);--purple: var(--color-purple-light);--magenta: var(--color-magenta-light);--red: var(--color-red-light)}}@keyframes bg-rainbow{0%{background-color:var(--red)}12%{background-color:var(--orange)}24%{background-color:var(--yellow)}36%{background-color:var(--green)}48%{background-color:var(--cyan)}60%{background-color:var(--blue)}72%{background-color:var(--purple)}84%{background-color:var(--magenta)}to{background-color:var(--red)}}@keyframes rainbow{0%{color:var(--red);border-color:var(--red)}12%{color:var(--orange);border-color:var(--orange)}24%{color:var(--yellow);border-color:var(--yellow)}36%{color:var(--green);border-color:var(--green)}48%{color:var(--cyan);border-color:var(--cyan)}60%{color:var(--blue);border-color:var(--blue)}72%{color:var(--purple);border-color:var(--purple)}84%{color:var(--magenta);border-color:var(--magenta)}to{color:var(--red);border-color:var(--red)}}*{box-sizing:border-box;font-family:sans-serif;margin:0;padding:0}body{background-color:var(--bg);color:var(--text);display:flex;flex-direction:column;align-items:center;gap:2rem;margin:0;padding:2rem 0;min-height:100vh}ul{list-style:none;margin:0;padding:0}.input-container{width:fit-content;padding:1rem;border-radius:5px;background-color:var(--ui);border:1px solid var(--ui-3);display:grid;grid-template-columns:10fr 1fr;grid-template-rows:2fr 1fr;gap:1rem;box-sizing:border-box;outline:none}.input-container .sort-label{writing-mode:vertical-rl;text-orientation:upright;grid-column:2 / 3;grid-row:1 / 2;align-self:flex-end;justify-self:center}.name-input-sub label{font-size:1.5rem}.input-container.valid button{animation:bg-rainbow 5s linear infinite}.input-container .should-sort{font-size:1.5rem;grid-column:2 / 3;grid-row:2 / 3}.input-container.valid,.input-container.valid input[type=text]{animation:rainbow 5s linear infinite}.input-container input[type=text]{border:none;border-bottom:1px solid var(--text-2);background-color:transparent;color:var(--text);font-size:1.2rem;padding:.5rem;width:100%;outline:none}.input-container input:focus{color:var(--cyan);border-bottom:1px solid var(--cyan)}.input-container input:hover{color:var(--cyan);border-bottom:1px solid var(--cyan)}.name-input-sub{display:flex;flex-direction:column;grid-column:1 / 2;grid-row:1 / 2}.file-input-sub{width:100%;height:100%;display:flex;position:relative}.file-input-sub label{width:100%;height:100%;display:flex;cursor:pointer;justify-content:center;align-items:center;font-size:4rem;border:1px solid var(--text-3);border-radius:5px;background-color:var(--ui-3)}.file-input-sub label:hover,.file-input-sub label.dragover{background-color:var(--cyan);border:1px solid var(--cyan)}.file-input-sub input{display:none}.input-container.file div{background-color:var(--ui);color:var(--text-1);text-align:center}.input-container button{width:100%;padding:.5rem 1rem;border-radius:5px;background-color:var(--ui-3);color:var(--text);font-size:1.2rem;border:none;outline:none;cursor:pointer;grid-column:1 / 2;grid-row:2 / 3}.input-container button:focus{background-color:var(--cyan)}.input-container button:hover{background-color:var(--cyan)}.errors{width:100%;color:var(--red);display:flex;flex-direction:column;align-items:center;padding:0 2rem}.errors h1{text-align:center}.error-list{width:fit-content;max-width:100%;padding:2rem;border-radius:1rem;margin-top:1rem;color:var(--red);font-size:1.2rem;display:flex;flex-direction:column;gap:.5rem;background-color:var(--ui)}.error-item{list-style:"> ";width:fit-content;max-width:100%;color:var(--text);word-break:break-word;padding:.5rem;margin-left:2ch;border-bottom:1px solid var(--ui-3)}.error-item b{width:fit-content;max-width:100%;color:var(--red)}.table-container{margin-top:2rem;border:1px solid var(--ui-3);background-color:var(--ui);border-radius:5px;padding:2px}table{width:100%;border-collapse:collapse}th{padding:0 0 .5rem;border-right:1px solid var(--text-2);border-left:1px solid var(--text-2);padding:1rem}th:first-child{border-left:0}th:last-child{border-right:0}tr td{padding:10px;border:1pt solid var(--text-2)}table b{color:var(--red)}
+    <style>/* src/index.css */
+:root {
+  font-size: 16px;
+  --color-base-black: #100F0F;
+  --color-base-950: #1C1B1A;
+  --color-base-900: #282726;
+  --color-base-850: #343331;
+  --color-base-800: #403E3C;
+  --color-base-700: #575653;
+  --color-base-600: #6F6E69;
+  --color-base-500: #878580;
+  --color-base-300: #B7B5AC;
+  --color-base-200: #CECDC3;
+  --color-base-150: #DAD8CE;
+  --color-base-100: #E6E4D9;
+  --color-base-50: #F2F0E5;
+  --color-base-paper: #FFFCF0;
+  --color-red: #AF3029;
+  --color-red-light: #D14D41;
+  --color-orange: #BC5215;
+  --color-orange-light: #DA702C;
+  --color-yellow: #AD8301;
+  --color-yellow-light: #D0A215;
+  --color-green: #66800B;
+  --color-green-light: #879A39;
+  --color-cyan: #24837B;
+  --color-cyan-light: #3AA99F;
+  --color-blue: #205EA6;
+  --color-blue-light: #4385BE;
+  --color-purple: #5E409D;
+  --color-purple-light: #8B7EC8;
+  --color-magenta: #A02F6F;
+  --color-magenta-light: #CE5D97;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: var(--color-base-black);
+    --bg-2: var(--color-base-950);
+    --ui: var(--color-base-900);
+    --ui-2: var(--color-base-850);
+    --ui-3: var(--color-base-800);
+    --text-3: var(--color-base-700);
+    --text-2: var(--color-base-500);
+    --text: var(--color-base-200);
+    --orange: var(--color-orange-light);
+    --yellow: var(--color-yellow-light);
+    --green: var(--color-green-light);
+    --cyan: var(--color-cyan-light);
+    --blue: var(--color-blue-light);
+    --purple: var(--color-purple-light);
+    --magenta: var(--color-magenta-light);
+    --red: var(--color-red-light);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: var(--color-base-paper);
+    --bg-2: var(--color-base-50);
+    --ui: var(--color-base-50);
+    --ui-2: var(--color-base-150);
+    --ui-3: var(--color-base-200);
+    --text-3: var(--color-base-300);
+    --text-2: var(--color-base-600);
+    --text: var(--color-base-black);
+    --orange: var(--color-orange-light);
+    --yellow: var(--color-yellow-light);
+    --green: var(--color-green-light);
+    --cyan: var(--color-cyan-light);
+    --blue: var(--color-blue-light);
+    --purple: var(--color-purple-light);
+    --magenta: var(--color-magenta-light);
+    --red: var(--color-red-light);
+  }
+}
+@keyframes bg-rainbow {
+  0% {
+    background-color: var(--red);
+  }
+  12% {
+    background-color: var(--orange);
+  }
+  24% {
+    background-color: var(--yellow);
+  }
+  36% {
+    background-color: var(--green);
+  }
+  48% {
+    background-color: var(--cyan);
+  }
+  60% {
+    background-color: var(--blue);
+  }
+  72% {
+    background-color: var(--purple);
+  }
+  84% {
+    background-color: var(--magenta);
+  }
+  100% {
+    background-color: var(--red);
+  }
+}
+@keyframes rainbow {
+  0% {
+    color: var(--red);
+    border-color: var(--red);
+  }
+  12% {
+    color: var(--orange);
+    border-color: var(--orange);
+  }
+  24% {
+    color: var(--yellow);
+    border-color: var(--yellow);
+  }
+  36% {
+    color: var(--green);
+    border-color: var(--green);
+  }
+  48% {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+  60% {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+  72% {
+    color: var(--purple);
+    border-color: var(--purple);
+  }
+  84% {
+    color: var(--magenta);
+    border-color: var(--magenta);
+  }
+  100% {
+    color: var(--red);
+    border-color: var(--red);
+  }
+}
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.input-container {
+  width: fit-content;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  background-color: var(--ui);
+  border: 1px solid var(--ui-3);
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  gap: 1rem;
+  box-sizing: border-box;
+  outline: none;
+}
+.input-container .sort-label {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: flex-end;
+  justify-self: center;
+}
+.name-input-sub label {
+  font-size: 1.5rem;
+}
+.input-container.valid button {
+  animation: bg-rainbow 5s linear infinite;
+}
+.input-container .should-sort {
+  font-size: 1.5rem;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+.input-container.valid {
+  animation: rainbow 5s linear infinite;
+}
+.input-container.valid input[type=text] {
+  animation: rainbow 5s linear infinite;
+}
+.input-container input[type=text] {
+  border: none;
+  border-bottom: 1px solid var(--text-2);
+  background-color: transparent;
+  color: var(--text);
+  font-size: 1.2rem;
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+  outline: none;
+}
+.input-container input:focus {
+  color: var(--cyan);
+  border-bottom: 1px solid var(--cyan);
+}
+.input-container input:hover {
+  color: var(--cyan);
+  border-bottom: 1px solid var(--cyan);
+}
+.name-input-sub {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.file-input-sub {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+.file-input-sub label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  border: 1px solid var(--text-3);
+  border-radius: 5px;
+  background-color: var(--ui-3);
+}
+.file-input-sub label:hover {
+  background-color: var(--cyan);
+  border: 1px solid var(--cyan);
+}
+.file-input-sub label.dragover {
+  background-color: var(--cyan);
+  border: 1px solid var(--cyan);
+}
+.file-input-sub input {
+  display: none;
+}
+.input-container.file div {
+  background-color: var(--ui);
+  color: var(--text-1);
+  text-align: center;
+}
+.input-container button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: var(--ui-3);
+  color: var(--text);
+  font-size: 1.2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.input-container button:focus {
+  background-color: var(--cyan);
+}
+.input-container button:hover {
+  background-color: var(--cyan);
+}
+.errors {
+  width: 100%;
+  color: var(--red);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 2rem;
+}
+.errors h1 {
+  text-align: center;
+}
+.error-list {
+  width: fit-content;
+  max-width: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  color: var(--red);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--ui);
+}
+.error-item {
+  list-style: "> ";
+  width: fit-content;
+  max-width: 100%;
+  color: var(--text);
+  word-break: break-word;
+  padding: 0.5rem;
+  margin-left: calc(2ch);
+  border-bottom: 1px solid var(--ui-3);
+}
+.error-item b {
+  width: fit-content;
+  max-width: 100%;
+  color: var(--red);
+}
+.table-container {
+  margin-top: 2rem;
+  border: 1px solid var(--ui-3);
+  background-color: var(--ui);
+  border-radius: 5px;
+  padding: 2px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  padding: 0 0 0.5rem 0;
+  border-right: 1px solid var(--text-2);
+  border-left: 1px solid var(--text-2);
+  padding: 1rem;
+}
+th:first-child {
+  border-left: 0;
+}
+th:last-child {
+  border-right: 0;
+}
+tbody {
+}
+tr td {
+  padding: 10px;
+  border: 1pt solid var(--text-2);
+}
+table b {
+  color: var(--red);
+}
 </style>
-    <script type="module">var z=Object,$,h=z.getPrototypeOf,B=document,S,R,D,q={isConnected:1},ae=1e3,A,P={},le=h(q),H=h(h),G=(e,t,l,r)=>(e??(setTimeout(l,r),new Set)).add(t),K=(e,t,l)=>{let r=R;R=t;try{return e(l)}catch(i){return console.error(i),l}finally{R=r}},O=e=>e.filter(t=>t._dom?.isConnected),W=e=>A=G(A,e,()=>{for(let t of A)t._bindings=O(t._bindings),t._listeners=O(t._listeners);A=$},ae),F={get val(){return R?.add(this),this._val},get oldVal(){return R?.add(this),this._oldVal},set val(e){let t=this;if(e!==t._val){t._val=e;let l=[...t._listeners=O(t._listeners)];for(let r of l)Z(r.f,r.s,r._dom),r._dom=$;t._bindings.length?S=G(S,t,se):t._oldVal=e}}},U=e=>({__proto__:F,_val:e,_oldVal:e,_bindings:[],_listeners:[]}),Y=e=>h(e??0)===F,oe=e=>Y(e)?e.val:e,ne=e=>Y(e)?e.oldVal:e,E=(e,t)=>{let l=new Set,r={f:e},i=D;D=[];let a=K(e,l,t);a=(a??B).nodeType?a:new Text(a);for(let o of l)W(o),o._bindings.push(r);for(let o of D)o._dom=a;return D=i,r._dom=a},Z=(e,t=U(),l)=>{let r=new Set,i={f:e,s:t};i._dom=l??D?.push(i)??q,t.val=K(e,r);for(let a of r)W(a),a._listeners.push(i);return t},J=(e,...t)=>{for(let l of t.flat(1/0)){let r=h(l??0),i=r===F?E(()=>l.val):r===H?E(l):l;i!=<script src="dist/index.js" type="module"></script>&e.append(i)}return e},ie=e=>(e._isBindingFunc=1,e),V=e=>new Proxy((t,...l)=>{let[r,...i]=h(l[0]??0)===le?l:[{},...l],a=e?B.createElementNS(e,t):B.createElement(t);for(let[o,s]of z.entries(r)){let n=j=>j?z.getOwnPropertyDescriptor(j,o)??n(h(j)):$,m=t+","+o,g=P[m]??(P[m]=n(h(a))?.set??0),d=g?g.bind(a):a.setAttribute.bind(a,o),b=h(s??0);b===F?E(()=>(d(s.val),a)):b===H&&(!o.startsWith("on")||s._isBindingFunc)?E(()=>(d(s()),a)):d(s)}return J(a,...i)},{get:(t,l)=>t.bind($,l)}),Q=(e,t)=>t?t!==e&&e.replaceWith(t):e.remove(),se=()=>{let e=[...S].filter(t=>t._val!==t._oldVal);S=$;for(let t of new Set(e.flatMap(l=>l._bindings=O(l._bindings))))Q(t._dom,E(t.f,t._dom)),t._dom=$;for(let t of e)t._oldVal=t._val},de=(e,t)=>Q(e,E(t,e)),p={add:J,_:ie,tags:V(),tagsNS:V,state:U,val:oe,oldVal:ne,derive:Z,hydrate:de};var ee=function(e,t,l,r){var i;t[0]=0;for(var a=1;a<t.length;a++){var o=t[a++],s=t[a]?(t[0]|=o?1:2,l[t[a++]]):t[++a];o===3?r[0]=s:o===4?r[1]=Object.assign(r[1]||{},s):o===5?(r[1]=r[1]||{})[t[++a]]=s:o===6?r[1][t[++a]]+=s+"":o?(i=e.apply(s,ee(e,s,l,["",null])),r.push(i),s[0]?t[0]|=2:(t[a-2]=0,t[a]=i)):r.push(s)}return r},X=new Map;function te(e){var t=X.get(this);return t||(t=new Map,X.set(this,t)),(t=ee(this,t.get(e)||(t.set(e,t=function(l){for(var r,i,a=1,o="",s="",n=[0],m=function(b){a===1&&(b||(o=o.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?n.push(0,b,o):a===3&&(b||o)?(n.push(3,b,o),a=2):a===2&&o==="..."&&b?n.push(4,b,0):a===2&&o&&!b?n.push(5,0,!0,o):a>=5&&((o||!b&&a===5)&&(n.push(a,0,o,i),a=6),b&&(n.push(a,b,0,i),a=6)),o=""},g=0;g<l.length;g++){g&&(a===1&&m(),m(g));for(var d=0;d<l[g].length;d++)r=l[g][d],a===1?r==="<"?(m(),n=[n],a=3):o+=r:a===4?o==="--"&&r===">"?(a=1,o=""):o=r+o[0]:s?r===s?s="":o+=r:r==='"'||r==="'"?s=r:r===">"?(m(),a=1):a&&(r==="="?(a=5,i=o,o=""):r==="/"&&(a<5||l[g][d+1]===">")?(m(),a===3&&(n=n[0]),a=n,(n=n[0]).push(2,0,a),a=0):r===" "||r==="	"||r===`
-`||r==="\r"?(m(),a=2):o+=r),a===3&&o==="!--"&&(a=4,n=n[0])}return m(),n}(e)),t),arguments,[])).length>1?t:t[0]}var C=window;C.localHostnames=C.localHostnames??[];C.localHostnames.push("localhost");C.localHostnames.push("127.0.0.1");var y=C.localHostnames.includes(location.hostname);console.log(y?"LOCALHOST, using fetch":"REMOTE, using file input");function ce(e,t,...l){let r=p.tags[e];return t?r(t,...l):r(...l)}var c=te.bind(ce),re=(e,t)=>e.length===t.length&&e.every((l,r)=>l===t[r]),L=e=>{let t=e.trim();return t=t.substring(t.indexOf(`
-`)+1),t.substring(t.lastIndexOf(`
-`)+1,-1).trim()},f=(e,t,l)=>Math.min(Math.max(e,t),l),x=p.state([]),u=p.state(y?localStorage.getItem("alumnName")??"V":"");p.derive(()=>{localStorage.setItem("alumnName",u.val)});var v=()=>`ET1_${u.val}`,T=p.state([]),_=p.state(void 0),k=p.state(void 0),N=p.state(void 0),w=p.state(!1),M=async e=>{if(y){let r=await fetch(`/${v()}/${e}`,{cache:"no-store"});if(r.ok)return await r.text()}let t;e.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:e.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/;let l=x.val.find(r=>t.test(r.name));return l?await l.text():null};p.derive(async()=>{let shouldSort=w.val;_.val=void 0,k.val=void 0,N.val=void 0;let localErrors=[];if(y&&u.val.length<1){localErrors.push({error:"El nombre del alumno debe tener al menos 1 caracter"}),T.val=localErrors;return}let alumnDataResponse=await M(`${v()}.js`);if(alumnDataResponse){let alumnDataText=L(alumnDataResponse);try{window[`datosgenerales_${u.val}`]=void 0,eval(alumnDataText);let captured=window[`datosgenerales_${u.val}`];window[`datosgenerales_${u.val}`]=void 0,_.val=captured}catch(e){let t=alumnDataText.split(`
-`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable datosgenerales_${u.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar los datos del alumno",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener los datos del alumno ${u.val}, aseg\xFArate de que el fichero se llama ${v()}.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let definitionsResponse=await M(`${v()}_tests.js`);if(definitionsResponse){let definitionsText=L(definitionsResponse);try{window[`def_test_${u.val}`]=void 0,eval(definitionsText);let captured=window[`def_test_${u.val}`];captured=shouldSort?captured.sort():captured,window[`def_test_${u.val}`]=void 0,k.val=captured}catch(e){let t=definitionsText.split(`
-`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable def_test_${u.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las definiciones de los tests",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama ${v()}_tests.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let testsResponse=await M(`${v()}_pruebas.js`);if(testsResponse){let testsText=L(testsResponse);try{window[`pruebasunitarias_${u.val}`]=void 0,eval(testsText);let captured=window[`pruebasunitarias_${u.val}`];captured=shouldSort?captured.sort():captured,window[`pruebasunitarias_${u.val}`]=void 0,N.val=captured}catch(e){let t=testsText.split(`
-`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable pruebasunitarias_${u.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las pruebas",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${v()}_pruebas.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});T.val=localErrors});var I=({head:e,data:t})=>c`
+    <script type="module">
+
+// node_modules/vanjs-core/src/van.js
+var Obj = Object;
+var _undefined;
+var protoOf = Obj.getPrototypeOf;
+var doc = document;
+var changedStates;
+var curDeps;
+var curNewDerives;
+var alwaysConnectedDom = { isConnected: 1 };
+var gcCycleInMs = 1e3;
+var statesToGc;
+var propSetterCache = {};
+var objProto = protoOf(alwaysConnectedDom);
+var funcProto = protoOf(protoOf);
+var addAndScheduleOnFirst = (set, s, f, waitMs) => (set ?? (setTimeout(f, waitMs), /* @__PURE__ */ new Set())).add(s);
+var runAndCaptureDeps = (f, deps, arg) => {
+  let prevDeps = curDeps;
+  curDeps = deps;
+  try {
+    return f(arg);
+  } catch (e) {
+    console.error(e);
+    return arg;
+  } finally {
+    curDeps = prevDeps;
+  }
+};
+var keepConnected = (l) => l.filter((b) => b._dom?.isConnected);
+var addStatesToGc = (d) => statesToGc = addAndScheduleOnFirst(statesToGc, d, () => {
+  for (let s of statesToGc)
+    s._bindings = keepConnected(s._bindings), s._listeners = keepConnected(s._listeners);
+  statesToGc = _undefined;
+}, gcCycleInMs);
+var stateProto = {
+  get val() {
+    curDeps?.add(this);
+    return this._val;
+  },
+  get oldVal() {
+    curDeps?.add(this);
+    return this._oldVal;
+  },
+  set val(v) {
+    let s = this;
+    if (v !== s._val) {
+      s._val = v;
+      let listeners = [...s._listeners = keepConnected(s._listeners)];
+      for (let l of listeners)
+        derive(l.f, l.s, l._dom), l._dom = _undefined;
+      s._bindings.length ? changedStates = addAndScheduleOnFirst(changedStates, s, updateDoms) : s._oldVal = v;
+    }
+  }
+};
+var state = (initVal) => ({
+  __proto__: stateProto,
+  _val: initVal,
+  _oldVal: initVal,
+  _bindings: [],
+  _listeners: []
+});
+var isState = (s) => protoOf(s ?? 0) === stateProto;
+var val = (s) => isState(s) ? s.val : s;
+var oldVal = (s) => isState(s) ? s.oldVal : s;
+var bind = (f, dom) => {
+  let deps = /* @__PURE__ */ new Set(), binding = { f }, prevNewDerives = curNewDerives;
+  curNewDerives = [];
+  let newDom = runAndCaptureDeps(f, deps, dom);
+  newDom = (newDom ?? doc).nodeType ? newDom : new Text(newDom);
+  for (let d of deps)
+    addStatesToGc(d), d._bindings.push(binding);
+  for (let l of curNewDerives)
+    l._dom = newDom;
+  curNewDerives = prevNewDerives;
+  return binding._dom = newDom;
+};
+var derive = (f, s = state(), dom) => {
+  let deps = /* @__PURE__ */ new Set(), listener = { f, s };
+  listener._dom = dom ?? curNewDerives?.push(listener) ?? alwaysConnectedDom;
+  s.val = runAndCaptureDeps(f, deps);
+  for (let d of deps)
+    addStatesToGc(d), d._listeners.push(listener);
+  return s;
+};
+var add = (dom, ...children) => {
+  for (let c of children.flat(Infinity)) {
+    let protoOfC = protoOf(c ?? 0);
+    let child = protoOfC === stateProto ? bind(() => c.val) : protoOfC === funcProto ? bind(c) : c;
+    if (child != _undefined)
+      dom.append(child);
+  }
+  return dom;
+};
+var _ = (f) => (f._isBindingFunc = 1, f);
+var tagsNS = (ns) => new Proxy((name, ...args) => {
+  let [props, ...children] = protoOf(args[0] ?? 0) === objProto ? args : [{}, ...args];
+  let dom = ns ? doc.createElementNS(ns, name) : doc.createElement(name);
+  for (let [k, v] of Obj.entries(props)) {
+    let getPropDescriptor = (proto) => proto ? Obj.getOwnPropertyDescriptor(proto, k) ?? getPropDescriptor(protoOf(proto)) : _undefined;
+    let cacheKey = name + "," + k;
+    let propSetter = propSetterCache[cacheKey] ?? (propSetterCache[cacheKey] = getPropDescriptor(protoOf(dom))?.set ?? 0);
+    let setter = propSetter ? propSetter.bind(dom) : dom.setAttribute.bind(dom, k);
+    let protoOfV = protoOf(v ?? 0);
+    if (protoOfV === stateProto)
+      bind(() => (setter(v.val), dom));
+    else if (protoOfV === funcProto && (!k.startsWith("on") || v._isBindingFunc))
+      bind(() => (setter(v()), dom));
+    else
+      setter(v);
+  }
+  return add(dom, ...children);
+}, { get: (tag, name) => tag.bind(_undefined, name) });
+var update = (dom, newDom) => newDom ? newDom !== dom && dom.replaceWith(newDom) : dom.remove();
+var updateDoms = () => {
+  let changedStatesArray = [...changedStates].filter((s) => s._val !== s._oldVal);
+  changedStates = _undefined;
+  for (let b of new Set(changedStatesArray.flatMap((s) => s._bindings = keepConnected(s._bindings))))
+    update(b._dom, bind(b.f, b._dom)), b._dom = _undefined;
+  for (let s of changedStatesArray)
+    s._oldVal = s._val;
+};
+var hydrate = (dom, f) => update(dom, bind(f, dom));
+var van_default = { add, _, tags: tagsNS(), tagsNS, state, val, oldVal, derive, hydrate };
+
+// node_modules/htm/dist/htm.module.js
+var n = function(t2, s, r, e) {
+  var u;
+  s[0] = 0;
+  for (var h2 = 1; h2 < s.length; h2++) {
+    var p = s[h2++], a = s[h2] ? (s[0] |= p ? 1 : 2, r[s[h2++]]) : s[++h2];
+    3 === p ? e[0] = a : 4 === p ? e[1] = Object.assign(e[1] || {}, a) : 5 === p ? (e[1] = e[1] || {})[s[++h2]] = a : 6 === p ? e[1][s[++h2]] += a + "" : p ? (u = t2.apply(a, n(t2, a, r, ["", null])), e.push(u), a[0] ? s[0] |= 2 : (s[h2 - 2] = 0, s[h2] = u)) : e.push(a);
+  }
+  return e;
+};
+var t = /* @__PURE__ */ new Map();
+function htm_module_default(s) {
+  var r = t.get(this);
+  return r || (r = /* @__PURE__ */ new Map(), t.set(this, r)), (r = n(this, r.get(s) || (r.set(s, r = function(n2) {
+    for (var t2, s2, r2 = 1, e = "", u = "", h2 = [0], p = function(n3) {
+      1 === r2 && (n3 || (e = e.replace(/^\s*\n\s*|\s*\n\s*$/g, ""))) ? h2.push(0, n3, e) : 3 === r2 && (n3 || e) ? (h2.push(3, n3, e), r2 = 2) : 2 === r2 && "..." === e && n3 ? h2.push(4, n3, 0) : 2 === r2 && e && !n3 ? h2.push(5, 0, true, e) : r2 >= 5 && ((e || !n3 && 5 === r2) && (h2.push(r2, 0, e, s2), r2 = 6), n3 && (h2.push(r2, n3, 0, s2), r2 = 6)), e = "";
+    }, a = 0; a < n2.length; a++) {
+      a && (1 === r2 && p(), p(a));
+      for (var l = 0; l < n2[a].length; l++)
+        t2 = n2[a][l], 1 === r2 ? "<" === t2 ? (p(), h2 = [h2], r2 = 3) : e += t2 : 4 === r2 ? "--" === e && ">" === t2 ? (r2 = 1, e = "") : e = t2 + e[0] : u ? t2 === u ? u = "" : e += t2 : '"' === t2 || "'" === t2 ? u = t2 : ">" === t2 ? (p(), r2 = 1) : r2 && ("=" === t2 ? (r2 = 5, s2 = e, e = "") : "/" === t2 && (r2 < 5 || ">" === n2[a][l + 1]) ? (p(), 3 === r2 && (h2 = h2[0]), r2 = h2, (h2 = h2[0]).push(2, 0, r2), r2 = 0) : " " === t2 || "	" === t2 || "\n" === t2 || "\r" === t2 ? (p(), r2 = 2) : e += t2), 3 === r2 && "!--" === e && (r2 = 4, h2 = h2[0]);
+    }
+    return p(), h2;
+  }(s)), r), arguments, [])).length > 1 ? r : r[0];
+}
+
+// src/index.js
+if (false) {
+  new EventSource("/esbuild").addEventListener("change", () => location.reload());
+}
+var w = window;
+w.localHostnames = w.localHostnames ?? [];
+w.localHostnames.push("localhost");
+w.localHostnames.push("127.0.0.1");
+var isLocalhost = w.localHostnames.includes(location.hostname);
+console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
+function h(type, props, ...children) {
+  const tag = van_default.tags[type];
+  if (props)
+    return tag(props, ...children);
+  return tag(...children);
+}
+var html = htm_module_default.bind(h);
+var compareArrays = (a, b) => a.length === b.length && a.every((element, index) => element === b[index]);
+var trimAndRemoveScripts = (text) => {
+  let trimmedText = text.trim();
+  trimmedText = trimmedText.substring(trimmedText.indexOf("\n") + 1);
+  return trimmedText.substring(trimmedText.lastIndexOf("\n") + 1, -1).trim();
+};
+var clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+var files = van_default.state([]);
+var alumnName = van_default.state(isLocalhost ? localStorage.getItem("alumnName") ?? "V" : "");
+van_default.derive(() => {
+  localStorage.setItem("alumnName", alumnName.val);
+});
+var qualifiedName = () => `ET1_${alumnName.val}`;
+var globalErrors = van_default.state([]);
+var alumnData = van_default.state(void 0);
+var definitions = van_default.state(void 0);
+var tests = van_default.state(void 0);
+var sort = van_default.state(false);
+var fetchOrExtract = async (filename) => {
+  if (isLocalhost) {
+    let resp = await fetch(`/${qualifiedName()}/${filename}`, { cache: "no-store" });
+    if (resp.ok) {
+      return await resp.text();
+    }
+  }
+  let reg = void 0;
+  if (filename.includes("pruebas")) {
+    reg = /ET1_(.*?)_pruebas\.js/;
+  } else if (filename.includes("tests")) {
+    reg = /ET1_(.*?)_tests\.js/;
+  } else {
+    reg = /ET1_(.*?)\.js/;
+  }
+  let file = files.val.find((f) => reg.test(f.name));
+  if (file) {
+    return await file.text();
+  }
+  return null;
+};
+van_default.derive(async () => {
+  let shouldSort = sort.val;
+  alumnData.val = void 0;
+  definitions.val = void 0;
+  tests.val = void 0;
+  const localErrors = [];
+  if (isLocalhost && alumnName.val.length < 1) {
+    localErrors.push({
+      error: "El nombre del alumno debe tener al menos 1 caracter"
+    });
+    globalErrors.val = localErrors;
+    return;
+  }
+  const alumnDataResponse = await fetchOrExtract(`${qualifiedName()}.js`);
+  if (alumnDataResponse) {
+    let alumnDataText = trimAndRemoveScripts(alumnDataResponse);
+    try {
+      window[`datosgenerales_${alumnName.val}`] = void 0;
+      eval(alumnDataText);
+      let captured = window[`datosgenerales_${alumnName.val}`];
+      window[`datosgenerales_${alumnName.val}`] = void 0;
+      alumnData.val = captured;
+    } catch (e) {
+      let line = alumnDataText.split("\n")[e.lineNumber - 1];
+      let trimmedLine = line.trim();
+      let lengthDiff = line.length - trimmedLine.length;
+      if (e instanceof ReferenceError) {
+        e = e;
+        localErrors.push({
+          error: `Comprueba que has definido la variable datosgenerales_${alumnName.val} correctamente`,
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      } else {
+        localErrors.push({
+          error: "Error al evaluar los datos del alumno",
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      }
+    }
+  } else {
+    localErrors.push({
+      error: `Error al obtener los datos del alumno ${alumnName.val}, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ${isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""}`
+    });
+  }
+  const definitionsResponse = await fetchOrExtract(`${qualifiedName()}_tests.js`);
+  if (definitionsResponse) {
+    let definitionsText = trimAndRemoveScripts(definitionsResponse);
+    try {
+      window[`def_test_${alumnName.val}`] = void 0;
+      eval(definitionsText);
+      let captured = window[`def_test_${alumnName.val}`];
+      captured = shouldSort ? captured.sort() : captured;
+      window[`def_test_${alumnName.val}`] = void 0;
+      definitions.val = captured;
+    } catch (e) {
+      let line = definitionsText.split("\n")[e.lineNumber - 1];
+      let trimmedLine = line.trim();
+      let lengthDiff = line.length - trimmedLine.length;
+      if (e instanceof ReferenceError) {
+        e = e;
+        localErrors.push({
+          error: `Comprueba que has definido la variable def_test_${alumnName.val} correctamente`,
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      } else {
+        localErrors.push({
+          error: "Error al evaluar las definiciones de los tests",
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      }
+    }
+  } else {
+    localErrors.push({
+      error: `Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ${isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""}`
+    });
+  }
+  const testsResponse = await fetchOrExtract(`${qualifiedName()}_pruebas.js`);
+  if (testsResponse) {
+    let testsText = trimAndRemoveScripts(testsResponse);
+    try {
+      window[`pruebasunitarias_${alumnName.val}`] = void 0;
+      eval(testsText);
+      let captured = window[`pruebasunitarias_${alumnName.val}`];
+      captured = shouldSort ? captured.sort() : captured;
+      window[`pruebasunitarias_${alumnName.val}`] = void 0;
+      tests.val = captured;
+    } catch (e) {
+      let line = testsText.split("\n")[e.lineNumber - 1];
+      let trimmedLine = line.trim();
+      let lengthDiff = line.length - trimmedLine.length;
+      if (e instanceof ReferenceError) {
+        e = e;
+        localErrors.push({
+          error: `Comprueba que has definido la variable pruebasunitarias_${alumnName.val} correctamente`,
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      } else {
+        localErrors.push({
+          error: "Error al evaluar las pruebas",
+          message: e.toString(),
+          lineNumber: e.lineNumber + 1,
+          line: trimmedLine,
+          columnNumber: clamp(e.columnNumber - lengthDiff, 0, line.length),
+          stack: e.stack
+        });
+      }
+    }
+  } else {
+    localErrors.push({
+      error: `Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ` + isLocalhost && "y est\xE1 en la carpetase x "
+    });
+  }
+  globalErrors.val = localErrors;
+});
+var Table = ({ head, data }) => html`
         <div class="table-container">
             <table>
-                ${e.length!==0&&c`
+                ${head.length !== 0 && html`
                     <thead>
                         <tr>
-                            ${e.map(l=>c`<th colspan=${l.colspan??1}>${l.name}</th>`)}
+                            ${head.map((h2) => html`<th colspan=${h2.colspan ?? 1}>${h2.name}</th>`)}
                         </tr>
                     </thead>
                 `}
                 <tbody>
-                    ${t.map(l=>c`
+                    ${data.map(
+  (row) => html`
                             <tr>
-                                ${l.map(r=>c`<td>${r}</td>`)}
+                                ${row.map((col) => html`<td>${col}</td>`)}
                             </tr>
-                        `)}
+                        `
+)}
                 </tbody>
             </table>
         </div>
-    `,ue=()=>c`
-    ${()=>_.val!==void 0?c`<div
+    `;
+var AlumnDataResult = () => html`
+    ${() => alumnData.val !== void 0 ? html`<div
                   id="datosgenerales"
                   style="display: block;">
-                  <div id="${_.val[1]}">
-                      <h1>${u.val}</h1>
-                      <p>Entrega: ${_.val[1]}</p>
-                      <p>Nombre: ${_.val[0]}</p>
-                      <p>Horas dedicadas: ${_.val[2]}</p>
+                  <div id="${alumnData.val[1]}">
+                      <h1>${alumnName.val}</h1>
+                      <p>Entrega: ${alumnData.val[1]}</p>
+                      <p>Nombre: ${alumnData.val[0]}</p>
+                      <p>Horas dedicadas: ${alumnData.val[2]}</p>
                   </div>
-              </div>`:""}
-`,pe=()=>c`
-    ${()=>k.val!==void 0?c`<div
+              </div>` : ""}
+`;
+var DefinitionResultTable = () => html`
+    ${() => definitions.val !== void 0 ? html`<div
                   id="testdefiniciones"
                   style="display: block;">
                   <h1>Resultado estructura definición tests</h1>
                   <p id="resultadodef">formato correcto en deficiones test</p>
                   <div id="div_tabla_def">
-                      ${I({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:k.val.map((e,t)=>{let[l,r,...i]=e,a=e.map(n=>typeof n),o=["string","number","string","boolean","string"],s=re(a,o);if(!s)for(let n=0;n<a.length;n++)a[n]!==o[n]?a[n]=c`<p>
-                                              <b>${a[n]}</b>
-                                          </p>`:a[n]=a[n];return[l,r,...a,s?"CORRECTA":c`<b>ERROR</b>`]})})}
+                      ${Table({
+  head: [
+    {
+      name: "Campo"
+    },
+    {
+      name: "CampoNum Def Test"
+    },
+    {
+      name: "Datos",
+      colspan: 5
+    },
+    {
+      name: "Resultado"
+    }
+  ],
+  // @ts-ignore
+  data: definitions.val.map((row, i) => {
+    const [field, numDefTest, ...data] = row;
+    let dataTypes = row.map((d) => typeof d);
+    let validDataTypes = ["string", "number", "string", "boolean", "string"];
+    const isCorrect = compareArrays(dataTypes, validDataTypes);
+    if (!isCorrect) {
+      for (let i2 = 0; i2 < dataTypes.length; i2++) {
+        if (dataTypes[i2] !== validDataTypes[i2]) {
+          dataTypes[i2] = html`<p>
+                                              <b>${dataTypes[i2]}</b>
+                                          </p>`;
+        } else {
+          dataTypes[i2] = dataTypes[i2];
+        }
+      }
+    }
+    return [field, numDefTest, ...dataTypes, isCorrect ? "CORRECTA" : html`<b>ERROR</b>`];
+  })
+})}
                   </div>
-              </div>`:""}
-`,me=()=>c`
-    ${()=>N.val!==void 0?c`<div
+              </div>` : ""}
+`;
+var TestResultTable = () => html`
+    ${() => tests.val !== void 0 ? html`<div
                   id="testpruebas"
                   style="display: block;">
                   <h1>Resultado estructura definición pruebas</h1>
                   <p id="resultadodef">formato correcto en las pruebas de test</p>
                   <div id="div_tabla_def">
-                      ${I({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:N.val.map((e,t)=>{let[l,r,...i]=e,a=e.map(n=>typeof n),o=["number","string","number","string","boolean"],s=re(a,o);if(!s)for(let n=0;n<a.length;n++)a[n]!==o[n]?a[n]=c`<b>${a[n]}</b>`:a[n]=a[n];return[r,l,...a,s?"CORRECTA":c`<b>ERROR</b>`]})})}
+                      ${Table({
+  head: [
+    {
+      name: "Campo"
+    },
+    {
+      name: "CampoNum Def Test"
+    },
+    {
+      name: "Datos",
+      colspan: 5
+    },
+    {
+      name: "Resultado"
+    }
+  ],
+  // @ts-ignore
+  data: tests.val.map((row, i) => {
+    const [numDefTest, field, ...data] = row;
+    let dataTypes = row.map((d) => typeof d);
+    let validDataTypes = ["number", "string", "number", "string", "boolean"];
+    const isCorrect = compareArrays(dataTypes, validDataTypes);
+    if (!isCorrect) {
+      for (let i2 = 0; i2 < dataTypes.length; i2++) {
+        if (dataTypes[i2] !== validDataTypes[i2]) {
+          dataTypes[i2] = html`<b>${dataTypes[i2]}</b>`;
+        } else {
+          dataTypes[i2] = dataTypes[i2];
+        }
+      }
+    }
+    return [field, numDefTest, ...dataTypes, isCorrect ? "CORRECTA" : html`<b>ERROR</b>`];
+  })
+})}
                   </div>
-              </div>`:""}
-`,be=()=>c`
-    ${()=>k.val!==void 0&&N.val!==void 0?c`<div
+              </div>` : ""}
+`;
+var TestPerDefinitionTable = () => html`
+    ${() => definitions.val !== void 0 && tests.val !== void 0 ? html`<div
                   id="pruebasentest"
                   style="display: block;">
                   <h1>Número de pruebas por test</h1>
 
                   <div id="div_tabla_test">
-                      ${I({head:[{name:"Test"},{name:"Resultado"}],data:k.val.map((e,t)=>{let[l,r,i,a,o]=e,s=N.val.filter(m=>m[1]==l&&m[0]==r),n=s.length;if(n>=2){let m=s.filter(d=>d[4]==!0).length,g=s.filter(d=>d[4]==!1).length;return m&&g?[`En el campo ${l} para el test definido ${r} existen ${n} pruebas => (${m} de exito y ${g} de error).`,"CORRECTA"]:[`En el campo ${l} para el test definido ${r} => existen ${n} pruebas, pero hace falta 1 
-                                      ${g<m?"prueba de error":"prueba de exito"}`,p.tags.b("ERROR")]}else return[`En el campo ${l} para el test definido ${r} deber\xEDa existir al menos una prueba de exito y una de error`,p.tags.b("ERROR")]})})}
+                      ${Table({
+  head: [
+    {
+      name: "Test"
+    },
+    {
+      name: "Resultado"
+    }
+  ],
+  // @ts-ignore
+  data: definitions.val.map((row, i) => {
+    const [field, numDefTest, condition, result, friendlyMessage] = row;
+    const currentFieldTests = tests.val.filter(
+      (test) => test[1] == field && test[0] == numDefTest
+    );
+    const definedTestAmount = currentFieldTests.length;
+    if (definedTestAmount >= 2) {
+      const trueTestAmount = currentFieldTests.filter((test) => test[4] == true).length;
+      const falseTestAmount = currentFieldTests.filter((test) => test[4] == false).length;
+      if (trueTestAmount && falseTestAmount) {
+        return [
+          `En el campo ${field} para el test definido ${numDefTest} existen ${definedTestAmount} pruebas => (${trueTestAmount} de exito y ${falseTestAmount} de error).`,
+          "CORRECTA"
+        ];
+      }
+      return [
+        `En el campo ${field} para el test definido ${numDefTest} => existen ${definedTestAmount} pruebas, pero hace falta 1 
+                                      ${falseTestAmount < trueTestAmount ? "prueba de error" : "prueba de exito"}`,
+        van_default.tags.b("ERROR")
+      ];
+    } else {
+      return [
+        `En el campo ${field} para el test definido ${numDefTest} deber\xEDa existir al menos una prueba de exito y una de error`,
+        van_default.tags.b("ERROR")
+      ];
+    }
+  })
+})}
                   </div>
-              </div>`:""}
-`,ge=(e,t,l)=>{let r;return function(){let a=this,o=arguments,s=function(){r=null,l||e.apply(a,o)},n=l&&!r;clearTimeout(r),r=setTimeout(s,t),n&&e.apply(a,o)}},ve=()=>c`
-    <div class=${()=>T.val.length==0?"valid input-container name":"input-container name"}>
+              </div>` : ""}
+`;
+var debounce = (func, wait, immediate) => {
+  let timeout;
+  return function executedFunction() {
+    const context = this;
+    const args = arguments;
+    const later = function() {
+      timeout = null;
+      if (!immediate)
+        func.apply(context, args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow)
+      func.apply(context, args);
+  };
+};
+var AlumnNameInput = () => html`
+    <div class=${() => globalErrors.val.length == 0 ? "valid input-container name" : "input-container name"}>
         <div class="name-input-sub">
             <label for="alumnname">Nombre del alumno</label>
             <input
                 type="text"
                 id="alumnname"
                 name="alumnname"
-                value=${u}
+                value=${alumnName}
                 autocomplete="off"
-                oninput=${ge(e=>u.val=e.target.value,500)} />
+                oninput=${debounce((e) => alumnName.val = e.target.value, 500)} />
         </div>
-        <button onclick=${()=>location.reload()}>Recargar</button>
+        <button onclick=${() => location.reload()}>Recargar</button>
         <label
             class="sort-label"
             for="should-sort"
@@ -96,18 +906,84 @@
         <input
             class="should-sort"
             type="checkbox"
-            onclick=${()=>w.val=!w.val}
-            checked=${()=>w.val} />
+            onclick=${() => sort.val = !sort.val}
+            checked=${() => sort.val} />
     </div>
-`;function fe(e){e.preventDefault();let t=[];e.dataTransfer.items?[...e.dataTransfer.items].forEach((l,r)=>{if(l.kind==="file"){let i=l.getAsFile();t.push(i),console.log(`\u2026 file[${r}].name = ${i.name}`)}}):[...e.dataTransfer.files].forEach((l,r)=>{t.push(l),console.log(`\u2026 file[${r}].name = ${l.name}`)}),x.val=t}var he=()=>c`
-        <div class=${()=>T.val.length==0?"valid input-container file":"input-container file"}>
+`;
+function dropHandler(ev) {
+  ev.preventDefault();
+  let droppedFiles = [];
+  if (ev.dataTransfer.items) {
+    [...ev.dataTransfer.items].forEach((item, i) => {
+      if (item.kind === "file") {
+        const file = item.getAsFile();
+        droppedFiles.push(file);
+        console.log(`\u2026 file[${i}].name = ${file.name}`);
+      }
+    });
+  } else {
+    [...ev.dataTransfer.files].forEach((file, i) => {
+      droppedFiles.push(file);
+      console.log(`\u2026 file[${i}].name = ${file.name}`);
+    });
+  }
+  files.val = droppedFiles;
+}
+var FileDropZone = () => {
+  const handleFileChange = (e) => {
+    const targetFiles = e.target.files;
+    let filesArray = Array.from(targetFiles);
+    let reg = void 0;
+    let nameMap = /* @__PURE__ */ new Map();
+    filesArray.forEach((f) => {
+      console.log(f.name);
+      if (f.name.includes("pruebas")) {
+        reg = /ET1_(.*?)_pruebas\.js/;
+      } else if (f.name.includes("tests")) {
+        reg = /ET1_(.*?)_tests\.js/;
+      } else {
+        reg = /ET1_(.*?)\.js/;
+      }
+      nameMap.set(f.name.match(reg)[1], nameMap.get(f.name.match(reg)[1]) + 1 || 1);
+    });
+    const preferredName = [...nameMap.entries()].sort((a, b) => b[1] - a[1])[0][0];
+    alumnName.val = preferredName;
+    let oldFiles = files.val;
+    let newFiles = filesArray.filter((f) => !oldFiles.find((of) => of.name === f.name));
+    let filesToKeep = oldFiles.filter((f) => {
+      if (f.name.includes("pruebas")) {
+        reg = /ET1_(.*?)_pruebas\.js/;
+      } else if (f.name.includes("tests")) {
+        reg = /ET1_(.*?)_tests\.js/;
+      } else {
+        reg = /ET1_(.*?)\.js/;
+      }
+      return reg.exec(f.name)[1] === preferredName;
+    });
+    let filesToAdd = newFiles.filter((f) => {
+      if (f.name.includes("pruebas")) {
+        reg = /ET1_(.*?)_pruebas\.js/;
+      } else if (f.name.includes("tests")) {
+        reg = /ET1_(.*?)_tests\.js/;
+      } else {
+        reg = /ET1_(.*?)\.js/;
+      }
+      return reg.exec(f.name)[1] === preferredName;
+    });
+    files.val = [...filesToKeep, ...filesToAdd];
+  };
+  return html`
+        <div class=${() => globalErrors.val.length == 0 ? "valid input-container file" : "input-container file"}>
             <div class="file-input-sub">
                 <label
-                    onclick=${()=>console.log(x.val)}
+                    onclick=${() => console.log(files.val)}
                     for="file-drop-zone-input"
-                    ondrop=${t=>{t.target.classList.remove("dragover"),fe(t)}}
-                    ondragover=${t=>t.target.classList.add("dragover")}
-                    ondragleave=${t=>t.target.classList.remove("dragover")}
+                    ondrop=${(e) => {
+    e.target.classList.remove("dragover");
+    dropHandler(e);
+  }}
+                    ondragover=${(e) => e.target.classList.add("dragover")}
+                    ondragleave=${(e) => e.target.classList.remove("dragover")}
                     >+</label
                 >
                 <input
@@ -115,10 +991,10 @@
                     id="file-drop-zone-input"
                     name="file-drop-zone-input"
                     multiple
-                    onchange=${t=>{let l=t.target.files,r=Array.from(l),i,a=new Map;r.forEach(d=>{console.log(d.name),d.name.includes("pruebas")?i=/ET1_(.*?)_pruebas\.js/:d.name.includes("tests")?i=/ET1_(.*?)_tests\.js/:i=/ET1_(.*?)\.js/,a.set(d.name.match(i)[1],a.get(d.name.match(i)[1])+1||1)});let o=[...a.entries()].sort((d,b)=>b[1]-d[1])[0][0];u.val=o;let s=x.val,n=r.filter(d=>!s.find(b=>b.name===d.name)),m=s.filter(d=>(d.name.includes("pruebas")?i=/ET1_(.*?)_pruebas\.js/:d.name.includes("tests")?i=/ET1_(.*?)_tests\.js/:i=/ET1_(.*?)\.js/,i.exec(d.name)[1]===o)),g=n.filter(d=>(d.name.includes("pruebas")?i=/ET1_(.*?)_pruebas\.js/:d.name.includes("tests")?i=/ET1_(.*?)_tests\.js/:i=/ET1_(.*?)\.js/,i.exec(d.name)[1]===o));x.val=[...m,...g]}}
+                    onchange=${handleFileChange}
                     accept=".js" />
             </div>
-            <!-- <button onclick=${()=>location.reload()}>Recargar</button> -->
+            <!-- <button onclick=${() => location.reload()}>Recargar</button> -->
             <div>Arrastra tus archivos o pulsa en el +<br />(repite cada vez que hagas cambios)</div>
             <label
                 class="sort-label"
@@ -128,40 +1004,61 @@
             <input
                 class="should-sort"
                 type="checkbox"
-                onclick=${()=>w.val=!w.val}
-                checked=${()=>w.val} />
+                onclick=${() => sort.val = !sort.val}
+                checked=${() => sort.val} />
         </div>
-        <h2>Alumno: ${()=>u.val.length<1?"DESCONOCIDO":u.val}</h2>
+        <h2>Alumno: ${() => alumnName.val.length < 1 ? "DESCONOCIDO" : alumnName.val}</h2>
         <div class="file-list">
-            ${()=>x.val.length!==0?c`<ul>
-                          ${x.val.map(t=>c`<li>
-                                  <p>${t.name}</p>
-                              </li>`)}
-                      </ul>`:""}
+            ${() => files.val.length !== 0 ? html`<ul>
+                          ${files.val.map(
+    (file) => html`<li>
+                                  <p>${file.name}</p>
+                              </li>`
+  )}
+                      </ul>` : ""}
         </div>
-    `,ye=e=>c`
+    `;
+};
+var ErrorItem = (error) => html`
     <li class="error-item">
-        <p>${e.error}</p>
-        ${e.message?c`<p>
-                  ${e.message} at line ${e.lineNumber} column ${e.columnNumber}
-                  <p>${c`
-                      ${e.line.substring(0,f(e.columnNumber-3,0,e.columnNumber))}
+        <p>${error.error}</p>
+        ${error.message ? html`<p>
+                  ${error.message} at line ${error.lineNumber} column ${error.columnNumber}
+                  <p>${html`
+                      ${error.line.substring(0, clamp(error.columnNumber - 3, 0, error.columnNumber))}
                       <b>
-                          ${e.line.substring(f(e.columnNumber-3,0,e.line.length),f(e.columnNumber+2,0,e.line.length))}
+                          ${error.line.substring(
+  clamp(error.columnNumber - 3, 0, error.line.length),
+  clamp(error.columnNumber + 2, 0, error.line.length)
+)}
                       </b>
-                      ${e.line.substring(f(e.columnNumber+2,0,e.line.length))}
+                      ${error.line.substring(clamp(error.columnNumber + 2, 0, error.line.length))}
                   `}
                 </p>
-              </p>`:""}
+              </p>` : ""}
     </li>
-`,$e=()=>c`
-    ${()=>T.val.length!==0?c`<div class="errors">
+`;
+var ErrorList = () => html`
+    ${() => globalErrors.val.length !== 0 ? html`<div class="errors">
                   <h1>Errores</h1>
                   <ul class="error-list">
-                      ${T.val.map(e=>ye(e))}
+                      ${globalErrors.val.map((error) => ErrorItem(error))}
                   </ul>
-              </div>`:""}
-`;y?p.add(document.body,ve()):p.add(document.body,he());p.add(document.body,c`<hr style="width:80%;" />`);p.add(document.body,$e());p.add(document.body,ue());p.add(document.body,pe());p.add(document.body,me());p.add(document.body,be());
+              </div>` : ""}
+`;
+if (isLocalhost) {
+  van_default.add(document.body, AlumnNameInput());
+} else {
+  van_default.add(document.body, FileDropZone());
+}
+van_default.add(document.body, html`<hr style="width:80%;" />`);
+van_default.add(document.body, ErrorList());
+van_default.add(document.body, AlumnDataResult());
+van_default.add(document.body, DefinitionResultTable());
+van_default.add(document.body, TestResultTable());
+van_default.add(document.body, TestPerDefinitionTable());
+
+
 </script>
 </head>
 <body>
