@@ -514,7 +514,7 @@ var w = window;
 w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
-var isLocalhost = w.localHostnames.includes(location.hostname);
+var isLocalhost = !w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 function h(type, props, ...children) {
   const tag = van_default.tags[type];
@@ -554,7 +554,7 @@ var fetchOrExtract = async (filename) => {
   } else if (filename.includes("tests")) {
     reg = /ET1_(.*?)_tests\.js/;
   } else {
-    reg = /ET1_(.*?)\.js/;
+    reg = /ET1_([^_]*?)\.js/;
   }
   let file = files.val.find((f) => reg.test(f.name));
   if (file) {
@@ -918,13 +918,11 @@ function dropHandler(ev) {
       if (item.kind === "file") {
         const file = item.getAsFile();
         droppedFiles.push(file);
-        console.log(`\u2026 file[${i}].name = ${file.name}`);
       }
     });
   } else {
     [...ev.dataTransfer.files].forEach((file, i) => {
       droppedFiles.push(file);
-      console.log(`\u2026 file[${i}].name = ${file.name}`);
     });
   }
   files.val = droppedFiles;
@@ -936,7 +934,6 @@ var FileDropZone = () => {
     let reg = void 0;
     let nameMap = /* @__PURE__ */ new Map();
     filesArray.forEach((f) => {
-      console.log(f.name);
       if (f.name.includes("pruebas")) {
         reg = /ET1_(.*?)_pruebas\.js/;
       } else if (f.name.includes("tests")) {
@@ -976,7 +973,6 @@ var FileDropZone = () => {
         <div class=${() => globalErrors.val.length == 0 ? "valid input-container file" : "input-container file"}>
             <div class="file-input-sub">
                 <label
-                    onclick=${() => console.log(files.val)}
                     for="file-drop-zone-input"
                     ondrop=${(e) => {
     e.target.classList.remove("dragover");
