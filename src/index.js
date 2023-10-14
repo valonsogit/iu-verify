@@ -11,7 +11,7 @@ w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
 
-const isLocalhost = !w.localHostnames.includes(location.hostname);
+const isLocalhost = w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 //UTILS
 function h(type, props, ...children) {
