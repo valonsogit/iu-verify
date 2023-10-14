@@ -13,7 +13,7 @@
   "scripts": {
     "build": "esbuild src/index.js --bundle --outdir=dist --format=esm --minify --define:window.IS_PRODUCTION=true",
     "inline": "bun src/inline.ts",
-    "deploy": "bun build && bun inline && rm dist/*.js dist/*.css && gh-pages -d dist",
+    "deploy": "bun run build && bun run inline && rm dist/*.js dist/*.css && gh-pages -d dist",
     "serve": "esbuild src/index.js --bundle --outdir=dist --watch --servedir=. --format=esm"
   },
   "peerDependencies": {
