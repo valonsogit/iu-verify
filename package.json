@@ -7,7 +7,8 @@
   "module": "src/inline.ts",
   "type": "module",
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "gh-pages": "^6.0.0"
   },
   "scripts": {
     "build": "esbuild src/index.js --bundle --outdir=dist --format=esm --minify --define:window.IS_PRODUCTION=true",
