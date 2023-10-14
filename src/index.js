@@ -528,7 +528,6 @@ const parseFiles = filesArray => {
         nameMap.set(f.name.match(reg)[1], nameMap.get(f.name.match(reg)[1]) + 1 || 1);
     });
     const preferredName = [...nameMap.entries()].sort((a, b) => b[1] - a[1])[0][0];
-    alumnName.val = preferredName;
 
     let oldFiles = files.val;
     let newFiles = filesArray.filter(f => !oldFiles.find(of => of.name === f.name));
@@ -554,8 +553,8 @@ const parseFiles = filesArray => {
         }
         return reg.exec(f.name)[1] === preferredName;
     });
-
     files.val = [...filesToKeep, ...filesToAdd];
+    alumnName.val = preferredName;
 };
 function dropHandler(ev) {
     // Prevent default behavior (Prevent file from being opened)
