@@ -514,7 +514,7 @@ var w = window;
 w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
-var isLocalhost = !w.localHostnames.includes(location.hostname);
+var isLocalhost = w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 function h(type, props, ...children) {
   const tag = van_default.tags[type];
