@@ -691,7 +691,7 @@ van_default.derive(async () => {
     }
   } else {
     localErrors.push({
-      error: `Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ` + isLocalhost && "y est\xE1 en la carpetase x "
+      error: `Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ` + isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""
     });
   }
   globalErrors.val = localErrors;
