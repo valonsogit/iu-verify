@@ -11,7 +11,7 @@ w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
 
-const isLocalhost = w.localHostnames.includes(location.hostname);
+const isLocalhost = !w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 //UTILS
 function h(type, props, ...children) {
@@ -40,7 +40,7 @@ van.derive(() => {
     localStorage.setItem("alumnName", alumnName.val);
 });
 
-const qualifiedName = () => `ET1_${alumnName.val}`;
+const qualifiedName = () => `ET1_${alumnName.val.length > 0 ? alumnName.val : "%NAME%"}`;
 /**
  * @typedef {Object} Error
  * @property {string} error
@@ -74,9 +74,8 @@ const fetchOrExtract = async filename => {
     } else if (filename.includes("tests")) {
         reg = /ET1_(.*?)_tests\.js/;
     } else {
-        reg = /ET1_(.*?)\.js/;
+        reg = /ET1_([^_]*?)\.js/;
     }
-
     let file = files.val.find(f => reg.test(f.name));
     if (file) {
         return await file.text();
@@ -190,7 +189,7 @@ van.derive(async () => {
         }
     } else {
         localErrors.push({
-            error: `Error al obtener las definiciones de los tests, asegúrate de que el fichero se llama ${qualifiedName()}_tests.js ${
+            error: `Error al obtener las definiciones de los tests, asegúrate de que el fichero se llama  ${qualifiedName()}_tests.js ${
                 isLocalhost ? `y está en la carpeta ${qualifiedName()} ` : ""
             }`,
         });
@@ -198,6 +197,7 @@ van.derive(async () => {
 
     //Tests
     const testsResponse = await fetchOrExtract(`${qualifiedName()}_pruebas.js`);
+
     if (testsResponse) {
         let testsText = trimAndRemoveScripts(testsResponse);
         try {
@@ -524,14 +524,12 @@ function dropHandler(ev) {
             if (item.kind === "file") {
                 const file = item.getAsFile();
                 droppedFiles.push(file);
-                console.log(`… file[${i}].name = ${file.name}`);
             }
         });
     } else {
         // Use DataTransfer interface to access the file(s)
         [...ev.dataTransfer.files].forEach((file, i) => {
             droppedFiles.push(file);
-            console.log(`… file[${i}].name = ${file.name}`);
         });
     }
     files.val = droppedFiles;
@@ -546,7 +544,6 @@ const FileDropZone = () => {
         let reg = undefined;
         let nameMap = new Map();
         filesArray.forEach(f => {
-            console.log(f.name);
             if (f.name.includes("pruebas")) {
                 reg = /ET1_(.*?)_pruebas\.js/;
             } else if (f.name.includes("tests")) {
@@ -590,7 +587,6 @@ const FileDropZone = () => {
         <div class=${() => (globalErrors.val.length == 0 ? "valid input-container file" : "input-container file")}>
             <div class="file-input-sub">
                 <label
-                    onclick=${() => console.log(files.val)}
                     for="file-drop-zone-input"
                     ondrop=${e => {
                         e.target.classList.remove("dragover");
