@@ -141,7 +141,9 @@ van.derive(async () => {
         localErrors.push({
             error: `Error al obtener los datos del alumno ${
                 alumnName.val
-            }, asegúrate de que el fichero se llama ${qualifiedName()}.js y está en la carpeta ${qualifiedName()}`,
+            }, asegúrate de que el fichero se llama ${qualifiedName()}.js ${
+                isLocalhost ? `y está en la carpeta ${qualifiedName()} ` : ""
+            }`,
         });
     }
 
@@ -188,7 +190,9 @@ van.derive(async () => {
         }
     } else {
         localErrors.push({
-            error: `Error al obtener las definiciones de los tests, asegúrate de que el fichero se llama ${qualifiedName()}_tests.js y está en la carpeta ${qualifiedName()}`,
+            error: `Error al obtener las definiciones de los tests, asegúrate de que el fichero se llama ${qualifiedName()}_tests.js ${
+                isLocalhost ? `y está en la carpeta ${qualifiedName()} ` : ""
+            }`,
         });
     }
 
@@ -234,7 +238,9 @@ van.derive(async () => {
         }
     } else {
         localErrors.push({
-            error: `Error al obtener las pruebas, asegúrate de que el fichero se llama ${qualifiedName()}_pruebas.js y está en la carpeta ${qualifiedName()}`,
+            error: `Error al obtener las pruebas, asegúrate de que el fichero se llama ${qualifiedName()}_pruebas.js ${
+                isLocalhost ? `y está en la carpeta ${qualifiedName()} ` : ""
+            }`,
         });
     }
     globalErrors.val = localErrors;
