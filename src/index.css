@@ -333,7 +333,6 @@ ul {
     display: none;
 }
 .input-container.file div {
-    pointer-events: none;
     background-color: var(--ui);
     color: var(--text-1);
     text-align: center;
