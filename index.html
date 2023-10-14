@@ -514,7 +514,7 @@ var w = window;
 w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
-var isLocalhost = w.localHostnames.includes(location.hostname);
+var isLocalhost = !w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 function h(type, props, ...children) {
   const tag = van_default.tags[type];
@@ -535,7 +535,7 @@ var alumnName = van_default.state(isLocalhost ? localStorage.getItem("alumnName"
 van_default.derive(() => {
   localStorage.setItem("alumnName", alumnName.val);
 });
-var qualifiedName = () => `ET1_${alumnName.val}`;
+var qualifiedName = () => `ET1_${alumnName.val.length > 0 ? alumnName.val : "%NAME%"}`;
 var globalErrors = van_default.state([]);
 var alumnData = van_default.state(void 0);
 var definitions = van_default.state(void 0);
@@ -651,7 +651,7 @@ van_default.derive(async () => {
     }
   } else {
     localErrors.push({
-      error: `Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ${isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""}`
+      error: `Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama  ${qualifiedName()}_tests.js ${isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""}`
     });
   }
   const testsResponse = await fetchOrExtract(`${qualifiedName()}_pruebas.js`);
@@ -691,7 +691,7 @@ van_default.derive(async () => {
     }
   } else {
     localErrors.push({
-      error: `Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${qualifiedName()}.js ` + isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""
+      error: `Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${qualifiedName()}_pruebas.js ${isLocalhost ? `y est\xE1 en la carpeta ${qualifiedName()} ` : ""}`
     });
   }
   globalErrors.val = localErrors;
