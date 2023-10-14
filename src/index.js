@@ -513,6 +513,50 @@ const AlumnNameInput = () => html`
             checked=${() => sort.val} />
     </div>
 `;
+const parseFiles = filesArray => {
+    //Find preferred name
+    let reg = undefined;
+    let nameMap = new Map();
+    filesArray.forEach(f => {
+        if (f.name.includes("pruebas")) {
+            reg = /ET1_(.*?)_pruebas\.js/;
+        } else if (f.name.includes("tests")) {
+            reg = /ET1_(.*?)_tests\.js/;
+        } else {
+            reg = /ET1_(.*?)\.js/;
+        }
+        nameMap.set(f.name.match(reg)[1], nameMap.get(f.name.match(reg)[1]) + 1 || 1);
+    });
+    const preferredName = [...nameMap.entries()].sort((a, b) => b[1] - a[1])[0][0];
+    alumnName.val = preferredName;
+
+    let oldFiles = files.val;
+    let newFiles = filesArray.filter(f => !oldFiles.find(of => of.name === f.name));
+
+    let filesToKeep = oldFiles.filter(f => {
+        if (f.name.includes("pruebas")) {
+            reg = /ET1_(.*?)_pruebas\.js/;
+        } else if (f.name.includes("tests")) {
+            reg = /ET1_(.*?)_tests\.js/;
+        } else {
+            reg = /ET1_(.*?)\.js/;
+        }
+        return reg.exec(f.name)[1] === preferredName;
+    });
+
+    let filesToAdd = newFiles.filter(f => {
+        if (f.name.includes("pruebas")) {
+            reg = /ET1_(.*?)_pruebas\.js/;
+        } else if (f.name.includes("tests")) {
+            reg = /ET1_(.*?)_tests\.js/;
+        } else {
+            reg = /ET1_(.*?)\.js/;
+        }
+        return reg.exec(f.name)[1] === preferredName;
+    });
+
+    files.val = [...filesToKeep, ...filesToAdd];
+};
 function dropHandler(ev) {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
@@ -532,56 +576,14 @@ function dropHandler(ev) {
             droppedFiles.push(file);
         });
     }
-    files.val = droppedFiles;
+    parseFiles(droppedFiles);
 }
 
 const FileDropZone = () => {
     const handleFileChange = e => {
         const targetFiles = e.target.files;
         let filesArray = Array.from(targetFiles);
-
-        //Find preferred name
-        let reg = undefined;
-        let nameMap = new Map();
-        filesArray.forEach(f => {
-            if (f.name.includes("pruebas")) {
-                reg = /ET1_(.*?)_pruebas\.js/;
-            } else if (f.name.includes("tests")) {
-                reg = /ET1_(.*?)_tests\.js/;
-            } else {
-                reg = /ET1_(.*?)\.js/;
-            }
-            nameMap.set(f.name.match(reg)[1], nameMap.get(f.name.match(reg)[1]) + 1 || 1);
-        });
-        const preferredName = [...nameMap.entries()].sort((a, b) => b[1] - a[1])[0][0];
-        alumnName.val = preferredName;
-
-        let oldFiles = files.val;
-        let newFiles = filesArray.filter(f => !oldFiles.find(of => of.name === f.name));
-
-        let filesToKeep = oldFiles.filter(f => {
-            if (f.name.includes("pruebas")) {
-                reg = /ET1_(.*?)_pruebas\.js/;
-            } else if (f.name.includes("tests")) {
-                reg = /ET1_(.*?)_tests\.js/;
-            } else {
-                reg = /ET1_(.*?)\.js/;
-            }
-            return reg.exec(f.name)[1] === preferredName;
-        });
-
-        let filesToAdd = newFiles.filter(f => {
-            if (f.name.includes("pruebas")) {
-                reg = /ET1_(.*?)_pruebas\.js/;
-            } else if (f.name.includes("tests")) {
-                reg = /ET1_(.*?)_tests\.js/;
-            } else {
-                reg = /ET1_(.*?)\.js/;
-            }
-            return reg.exec(f.name)[1] === preferredName;
-        });
-
-        files.val = [...filesToKeep, ...filesToAdd];
+        parseFiles(filesArray);
     };
     return html`
         <div class=${() => (globalErrors.val.length == 0 ? "valid input-container file" : "input-container file")}>
