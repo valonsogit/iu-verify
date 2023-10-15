@@ -11,7 +11,7 @@ w.localHostnames = w.localHostnames ?? [];
 w.localHostnames.push("localhost");
 w.localHostnames.push("127.0.0.1");
 
-const isLocalhost = w.localHostnames.includes(location.hostname);
+const isLocalhost = !w.localHostnames.includes(location.hostname);
 console.log(isLocalhost ? "LOCALHOST, using fetch" : "REMOTE, using file input");
 //UTILS
 function h(type, props, ...children) {
@@ -28,7 +28,7 @@ const compareArrays = (a, b) => a.length === b.length && a.every((element, index
 const trimAndRemoveScripts = text => {
     let trimmedText = text.trim();
     trimmedText = trimmedText.substring(trimmedText.indexOf("\n") + 1);
-    return trimmedText.substring(trimmedText.lastIndexOf("\n") + 1, -1).trim();
+    return trimmedText.substring(trimmedText.lastIndexOf("\n") + 1, -1);
 };
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
@@ -110,6 +110,7 @@ van.derive(async () => {
             window[`datosgenerales_${alumnName.val}`] = undefined;
             alumnData.val = captured;
         } catch (e) {
+            e.lineNumber = e.lineNumber ?? 1;
             let line = alumnDataText.split("\n")[e.lineNumber - 1];
             let trimmedLine = line.trim();
             let lengthDiff = line.length - trimmedLine.length;
@@ -161,6 +162,9 @@ van.derive(async () => {
 
             definitions.val = captured;
         } catch (e) {
+            console.log(Object.getOwnPropertyDescriptors(e));
+
+            e.lineNumber = e.lineNumber ?? 1;
             let line = definitionsText.split("\n")[e.lineNumber - 1];
             let trimmedLine = line.trim();
             let lengthDiff = line.length - trimmedLine.length;
@@ -210,6 +214,7 @@ van.derive(async () => {
             window[`pruebasunitarias_${alumnName.val}`] = undefined;
             tests.val = captured;
         } catch (e) {
+            e.lineNumber = e.lineNumber ?? 1;
             let line = testsText.split("\n")[e.lineNumber - 1];
             let trimmedLine = line.trim();
             let lengthDiff = line.length - trimmedLine.length;
@@ -637,8 +642,11 @@ const ErrorItem = error => html`
     <li class="error-item">
         <p>${error.error}</p>
         ${error.message
-            ? html`<p>
-                  ${error.message} at line ${error.lineNumber} column ${error.columnNumber}
+            ? window?.chrome === undefined
+                ? html`<p>
+                  ${error.message} ${
+                      window?.chrome === undefined ? `at line ${error.lineNumber} column ${error.columnNumber}` : ""
+                  }
                   <p>${html`
                       ${error.line.substring(0, clamp(error.columnNumber - 3, 0, error.columnNumber))}
                       <b>
@@ -651,6 +659,7 @@ const ErrorItem = error => html`
                   `}
                 </p>
               </p>`
+                : html`<p>${error.message}</p>`
             : ""}
     </li>
 `;
