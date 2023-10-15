@@ -8,40 +8,40 @@
 </style>
     <script type="module">
 
-var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P={},oe=h(q),H=h(h),G=(e,t,a,r)=>(e??(setTimeout(a,r),new Set)).add(t),K=(e,t,a)=>{let r=D;D=t;try{return e(a)}catch(s){return console.error(s),a}finally{D=r}},O=e=>e.filter(t=>t._dom?.isConnected),W=e=>A=G(A,e,()=>{for(let t of A)t._bindings=O(t._bindings),t._listeners=O(t._listeners);A=x},le),F={get val(){return D?.add(this),this._val},get oldVal(){return D?.add(this),this._oldVal},set val(e){let t=this;if(e!==t._val){t._val=e;let a=[...t._listeners=O(t._listeners)];for(let r of a)Z(r.f,r.s,r._dom),r._dom=x;t._bindings.length?S=G(S,t,de):t._oldVal=e}}},U=e=>({__proto__:F,_val:e,_oldVal:e,_bindings:[],_listeners:[]}),Y=e=>h(e??0)===F,ne=e=>Y(e)?e.val:e,ie=e=>Y(e)?e.oldVal:e,w=(e,t)=>{let a=new Set,r={f:e},s=N;N=[];let l=K(e,a,t);l=(l??B).nodeType?l:new Text(l);for(let n of a)W(n),n._bindings.push(r);for(let n of N)n._dom=l;return N=s,r._dom=l},Z=(e,t=U(),a)=>{let r=new Set,s={f:e,s:t};s._dom=a??N?.push(s)??q,t.val=K(e,r);for(let l of r)W(l),l._listeners.push(s);return t},J=(e,...t)=>{for(let a of t.flat(1/0)){let r=h(a??0),s=r===F?w(()=>a.val):r===H?w(a):a;s!=x&&e.append(s)}return e},se=e=>(e._isBindingFunc=1,e),V=e=>new Proxy((t,...a)=>{let[r,...s]=h(a[0]??0)===oe?a:[{},...a],l=e?B.createElementNS(e,t):B.createElement(t);for(let[n,i]of z.entries(r)){let o=j=>j?z.getOwnPropertyDescriptor(j,n)??o(h(j)):x,u=t+","+n,m=P[u]??(P[u]=o(h(l))?.set??0),g=m?m.bind(l):l.setAttribute.bind(l,n),b=h(i??0);b===F?w(()=>(g(i.val),l)):b===H&&(!n.startsWith("on")||i._isBindingFunc)?w(()=>(g(i()),l)):g(i)}return J(l,...s)},{get:(t,a)=>t.bind(x,a)}),Q=(e,t)=>t?t!==e&&e.replaceWith(t):e.remove(),de=()=>{let e=[...S].filter(t=>t._val!==t._oldVal);S=x;for(let t of new Set(e.flatMap(a=>a._bindings=O(a._bindings))))Q(t._dom,w(t.f,t._dom)),t._dom=x;for(let t of e)t._oldVal=t._val},ce=(e,t)=>Q(e,w(t,e)),p={add:J,_:se,tags:V(),tagsNS:V,state:U,val:ne,oldVal:ie,derive:Z,hydrate:ce};var ee=function(e,t,a,r){var s;t[0]=0;for(var l=1;l<t.length;l++){var n=t[l++],i=t[l]?(t[0]|=n?1:2,a[t[l++]]):t[++l];n===3?r[0]=i:n===4?r[1]=Object.assign(r[1]||{},i):n===5?(r[1]=r[1]||{})[t[++l]]=i:n===6?r[1][t[++l]]+=i+"":n?(s=e.apply(i,ee(e,i,a,["",null])),r.push(s),i[0]?t[0]|=2:(t[l-2]=0,t[l]=s)):r.push(i)}return r},X=new Map;function te(e){var t=X.get(this);return t||(t=new Map,X.set(this,t)),(t=ee(this,t.get(e)||(t.set(e,t=function(a){for(var r,s,l=1,n="",i="",o=[0],u=function(b){l===1&&(b||(n=n.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?o.push(0,b,n):l===3&&(b||n)?(o.push(3,b,n),l=2):l===2&&n==="..."&&b?o.push(4,b,0):l===2&&n&&!b?o.push(5,0,!0,n):l>=5&&((n||!b&&l===5)&&(o.push(l,0,n,s),l=6),b&&(o.push(l,b,0,s),l=6)),n=""},m=0;m<a.length;m++){m&&(l===1&&u(),u(m));for(var g=0;g<a[m].length;g++)r=a[m][g],l===1?r==="<"?(u(),o=[o],l=3):n+=r:l===4?n==="--"&&r===">"?(l=1,n=""):n=r+n[0]:i?r===i?i="":n+=r:r==='"'||r==="'"?i=r:r===">"?(u(),l=1):l&&(r==="="?(l=5,s=n,n=""):r==="/"&&(l<5||a[m][g+1]===">")?(u(),l===3&&(o=o[0]),l=o,(o=o[0]).push(2,0,l),l=0):r===" "||r==="	"||r===`
-`||r==="\r"?(u(),l=2):n+=r),l===3&&n==="!--"&&(l=4,o=o[0])}return u(),o}(e)),t),arguments,[])).length>1?t:t[0]}var R=window;R.localHostnames=R.localHostnames??[];R.localHostnames.push("localhost");R.localHostnames.push("127.0.0.1");var y=R.localHostnames.includes(location.hostname);console.log(y?"LOCALHOST, using fetch":"REMOTE, using file input");function ue(e,t,...a){let r=p.tags[e];return t?r(t,...a):r(...a)}var d=te.bind(ue),re=(e,t)=>e.length===t.length&&e.every((a,r)=>a===t[r]),M=e=>{let t=e.trim();return t=t.substring(t.indexOf(`
+var z=Object,$,h=z.getPrototypeOf,B=document,O,D,k,q={isConnected:1},ae=1e3,A,I={},oe=h(q),H=h(h),G=(e,t,l,r)=>(e??(setTimeout(l,r),new Set)).add(t),K=(e,t,l)=>{let r=D;D=t;try{return e(l)}catch(s){return console.error(s),l}finally{D=r}},S=e=>e.filter(t=>t._dom?.isConnected),W=e=>A=G(A,e,()=>{for(let t of A)t._bindings=S(t._bindings),t._listeners=S(t._listeners);A=$},ae),F={get val(){return D?.add(this),this._val},get oldVal(){return D?.add(this),this._oldVal},set val(e){let t=this;if(e!==t._val){t._val=e;let l=[...t._listeners=S(t._listeners)];for(let r of l)Z(r.f,r.s,r._dom),r._dom=$;t._bindings.length?O=G(O,t,de):t._oldVal=e}}},U=e=>({__proto__:F,_val:e,_oldVal:e,_bindings:[],_listeners:[]}),Y=e=>h(e??0)===F,ne=e=>Y(e)?e.val:e,ie=e=>Y(e)?e.oldVal:e,w=(e,t)=>{let l=new Set,r={f:e},s=k;k=[];let a=K(e,l,t);a=(a??B).nodeType?a:new Text(a);for(let n of l)W(n),n._bindings.push(r);for(let n of k)n._dom=a;return k=s,r._dom=a},Z=(e,t=U(),l)=>{let r=new Set,s={f:e,s:t};s._dom=l??k?.push(s)??q,t.val=K(e,r);for(let a of r)W(a),a._listeners.push(s);return t},J=(e,...t)=>{for(let l of t.flat(1/0)){let r=h(l??0),s=r===F?w(()=>l.val):r===H?w(l):l;s!=<script src="dist/index.js" type="module"></script>&e.append(s)}return e},se=e=>(e._isBindingFunc=1,e),V=e=>new Proxy((t,...l)=>{let[r,...s]=h(l[0]??0)===oe?l:[{},...l],a=e?B.createElementNS(e,t):B.createElement(t);for(let[n,i]of z.entries(r)){let o=j=>j?z.getOwnPropertyDescriptor(j,n)??o(h(j)):$,u=t+","+n,m=I[u]??(I[u]=o(h(a))?.set??0),g=m?m.bind(a):a.setAttribute.bind(a,n),b=h(i??0);b===F?w(()=>(g(i.val),a)):b===H&&(!n.startsWith("on")||i._isBindingFunc)?w(()=>(g(i()),a)):g(i)}return J(a,...s)},{get:(t,l)=>t.bind($,l)}),Q=(e,t)=>t?t!==e&&e.replaceWith(t):e.remove(),de=()=>{let e=[...O].filter(t=>t._val!==t._oldVal);O=$;for(let t of new Set(e.flatMap(l=>l._bindings=S(l._bindings))))Q(t._dom,w(t.f,t._dom)),t._dom=$;for(let t of e)t._oldVal=t._val},ce=(e,t)=>Q(e,w(t,e)),p={add:J,_:se,tags:V(),tagsNS:V,state:U,val:ne,oldVal:ie,derive:Z,hydrate:ce};var ee=function(e,t,l,r){var s;t[0]=0;for(var a=1;a<t.length;a++){var n=t[a++],i=t[a]?(t[0]|=n?1:2,l[t[a++]]):t[++a];n===3?r[0]=i:n===4?r[1]=Object.assign(r[1]||{},i):n===5?(r[1]=r[1]||{})[t[++a]]=i:n===6?r[1][t[++a]]+=i+"":n?(s=e.apply(i,ee(e,i,l,["",null])),r.push(s),i[0]?t[0]|=2:(t[a-2]=0,t[a]=s)):r.push(i)}return r},X=new Map;function te(e){var t=X.get(this);return t||(t=new Map,X.set(this,t)),(t=ee(this,t.get(e)||(t.set(e,t=function(l){for(var r,s,a=1,n="",i="",o=[0],u=function(b){a===1&&(b||(n=n.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?o.push(0,b,n):a===3&&(b||n)?(o.push(3,b,n),a=2):a===2&&n==="..."&&b?o.push(4,b,0):a===2&&n&&!b?o.push(5,0,!0,n):a>=5&&((n||!b&&a===5)&&(o.push(a,0,n,s),a=6),b&&(o.push(a,b,0,s),a=6)),n=""},m=0;m<l.length;m++){m&&(a===1&&u(),u(m));for(var g=0;g<l[m].length;g++)r=l[m][g],a===1?r==="<"?(u(),o=[o],a=3):n+=r:a===4?n==="--"&&r===">"?(a=1,n=""):n=r+n[0]:i?r===i?i="":n+=r:r==='"'||r==="'"?i=r:r===">"?(u(),a=1):a&&(r==="="?(a=5,s=n,n=""):r==="/"&&(a<5||l[m][g+1]===">")?(u(),a===3&&(o=o[0]),a=o,(o=o[0]).push(2,0,a),a=0):r===" "||r==="	"||r===`
+`||r==="\r"?(u(),a=2):n+=r),a===3&&n==="!--"&&(a=4,o=o[0])}return u(),o}(e)),t),arguments,[])).length>1?t:t[0]}var R=window;R.localHostnames=R.localHostnames??[];R.localHostnames.push("localhost");R.localHostnames.push("127.0.0.1");var y=!R.localHostnames.includes(location.hostname);console.log(y?"LOCALHOST, using fetch":"REMOTE, using file input");function ue(e,t,...l){let r=p.tags[e];return t?r(t,...l):r(...l)}var d=te.bind(ue),re=(e,t)=>e.length===t.length&&e.every((l,r)=>l===t[r]),M=e=>{let t=e.trim();return t=t.substring(t.indexOf(`
 `)+1),t.substring(t.lastIndexOf(`
-`)+1,-1).trim()},f=(e,t,a)=>Math.min(Math.max(e,t),a),C=p.state([]),c=p.state(y?localStorage.getItem("alumnName")??"V":"");p.derive(()=>{localStorage.setItem("alumnName",c.val)});var v=()=>`ET1_${c.val.length>0?c.val:"%NAME%"}`,E=p.state([]),_=p.state(void 0),T=p.state(void 0),k=p.state(void 0),$=p.state(!1),L=async e=>{if(y){let r=await fetch(`/${v()}/${e}`,{cache:"no-store"});if(r.ok)return await r.text()}let t;e.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:e.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_([^_]*?)\.js/;let a=C.val.find(r=>t.test(r.name));return a?await a.text():null};p.derive(async()=>{let shouldSort=$.val;_.val=void 0,T.val=void 0,k.val=void 0;let localErrors=[];if(y&&c.val.length<1){localErrors.push({error:"El nombre del alumno debe tener al menos 1 caracter"}),E.val=localErrors;return}let alumnDataResponse=await L(`${v()}.js`);if(alumnDataResponse){let alumnDataText=M(alumnDataResponse);try{window[`datosgenerales_${c.val}`]=void 0,eval(alumnDataText);let captured=window[`datosgenerales_${c.val}`];window[`datosgenerales_${c.val}`]=void 0,_.val=captured}catch(e){let t=alumnDataText.split(`
-`)[e.lineNumber-1],a=t.trim(),r=t.length-a.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable datosgenerales_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar los datos del alumno",message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener los datos del alumno ${c.val}, aseg\xFArate de que el fichero se llama ${v()}.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let definitionsResponse=await L(`${v()}_tests.js`);if(definitionsResponse){let definitionsText=M(definitionsResponse);try{window[`def_test_${c.val}`]=void 0,eval(definitionsText);let captured=window[`def_test_${c.val}`];captured=shouldSort?captured.sort():captured,window[`def_test_${c.val}`]=void 0,T.val=captured}catch(e){let t=definitionsText.split(`
-`)[e.lineNumber-1],a=t.trim(),r=t.length-a.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable def_test_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las definiciones de los tests",message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama  ${v()}_tests.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let testsResponse=await L(`${v()}_pruebas.js`);if(testsResponse){let testsText=M(testsResponse);try{window[`pruebasunitarias_${c.val}`]=void 0,eval(testsText);let captured=window[`pruebasunitarias_${c.val}`];captured=shouldSort?captured.sort():captured,window[`pruebasunitarias_${c.val}`]=void 0,k.val=captured}catch(e){let t=testsText.split(`
-`)[e.lineNumber-1],a=t.trim(),r=t.length-a.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable pruebasunitarias_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las pruebas",message:e.toString(),lineNumber:e.lineNumber+1,line:a,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${v()}_pruebas.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});E.val=localErrors});var I=({head:e,data:t})=>d`
+`)+1,-1)},f=(e,t,l)=>Math.min(Math.max(e,t),l),C=p.state([]),c=p.state(y?localStorage.getItem("alumnName")??"V":"");p.derive(()=>{localStorage.setItem("alumnName",c.val)});var v=()=>`ET1_${c.val.length>0?c.val:"%NAME%"}`,E=p.state([]),x=p.state(void 0),T=p.state(void 0),N=p.state(void 0),_=p.state(!1),L=async e=>{if(y){let r=await fetch(`/${v()}/${e}`,{cache:"no-store"});if(r.ok)return await r.text()}let t;e.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:e.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_([^_]*?)\.js/;let l=C.val.find(r=>t.test(r.name));return l?await l.text():null};p.derive(async()=>{let shouldSort=_.val;x.val=void 0,T.val=void 0,N.val=void 0;let localErrors=[];if(y&&c.val.length<1){localErrors.push({error:"El nombre del alumno debe tener al menos 1 caracter"}),E.val=localErrors;return}let alumnDataResponse=await L(`${v()}.js`);if(alumnDataResponse){let alumnDataText=M(alumnDataResponse);try{window[`datosgenerales_${c.val}`]=void 0,eval(alumnDataText);let captured=window[`datosgenerales_${c.val}`];window[`datosgenerales_${c.val}`]=void 0,x.val=captured}catch(e){e.lineNumber=e.lineNumber??1;let t=alumnDataText.split(`
+`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable datosgenerales_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar los datos del alumno",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener los datos del alumno ${c.val}, aseg\xFArate de que el fichero se llama ${v()}.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let definitionsResponse=await L(`${v()}_tests.js`);if(definitionsResponse){let definitionsText=M(definitionsResponse);try{window[`def_test_${c.val}`]=void 0,eval(definitionsText);let captured=window[`def_test_${c.val}`];captured=shouldSort?captured.sort():captured,window[`def_test_${c.val}`]=void 0,T.val=captured}catch(e){console.log(Object.getOwnPropertyDescriptors(e)),e.lineNumber=e.lineNumber??1;let t=definitionsText.split(`
+`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable def_test_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las definiciones de los tests",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las definiciones de los tests, aseg\xFArate de que el fichero se llama  ${v()}_tests.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});let testsResponse=await L(`${v()}_pruebas.js`);if(testsResponse){let testsText=M(testsResponse);try{window[`pruebasunitarias_${c.val}`]=void 0,eval(testsText);let captured=window[`pruebasunitarias_${c.val}`];captured=shouldSort?captured.sort():captured,window[`pruebasunitarias_${c.val}`]=void 0,N.val=captured}catch(e){e.lineNumber=e.lineNumber??1;let t=testsText.split(`
+`)[e.lineNumber-1],l=t.trim(),r=t.length-l.length;e instanceof ReferenceError?(e=e,localErrors.push({error:`Comprueba que has definido la variable pruebasunitarias_${c.val} correctamente`,message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})):localErrors.push({error:"Error al evaluar las pruebas",message:e.toString(),lineNumber:e.lineNumber+1,line:l,columnNumber:f(e.columnNumber-r,0,t.length),stack:e.stack})}}else localErrors.push({error:`Error al obtener las pruebas, aseg\xFArate de que el fichero se llama ${v()}_pruebas.js ${y?`y est\xE1 en la carpeta ${v()} `:""}`});E.val=localErrors});var P=({head:e,data:t})=>d`
         <div class="table-container">
             <table>
                 ${e.length!==0&&d`
                     <thead>
                         <tr>
-                            ${e.map(a=>d`<th colspan=${a.colspan??1}>${a.name}</th>`)}
+                            ${e.map(l=>d`<th colspan=${l.colspan??1}>${l.name}</th>`)}
                         </tr>
                     </thead>
                 `}
                 <tbody>
-                    ${t.map(a=>d`
+                    ${t.map(l=>d`
                             <tr>
-                                ${a.map(r=>d`<td>${r}</td>`)}
+                                ${l.map(r=>d`<td>${r}</td>`)}
                             </tr>
                         `)}
                 </tbody>
             </table>
         </div>
     `,pe=()=>d`
-    ${()=>_.val!==void 0?d`<div
+    ${()=>x.val!==void 0?d`<div
                   id="datosgenerales"
                   style="display: block;">
-                  <div id="${_.val[1]}">
+                  <div id="${x.val[1]}">
                       <h1>${c.val}</h1>
-                      <p>Entrega: ${_.val[1]}</p>
-                      <p>Nombre: ${_.val[0]}</p>
-                      <p>Horas dedicadas: ${_.val[2]}</p>
+                      <p>Entrega: ${x.val[1]}</p>
+                      <p>Nombre: ${x.val[0]}</p>
+                      <p>Horas dedicadas: ${x.val[2]}</p>
                   </div>
               </div>`:""}
 `,me=()=>d`
@@ -51,33 +51,33 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
                   <h1>Resultado estructura definición tests</h1>
                   <p id="resultadodef">formato correcto en deficiones test</p>
                   <div id="div_tabla_def">
-                      ${I({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:T.val.map((e,t)=>{let[a,r,...s]=e,l=e.map(o=>typeof o),n=["string","number","string","boolean","string"],i=re(l,n);if(!i)for(let o=0;o<l.length;o++)l[o]!==n[o]?l[o]=d`<p>
-                                              <b>${l[o]}</b>
-                                          </p>`:l[o]=l[o];return[a,r,...l,i?"CORRECTA":d`<b>ERROR</b>`]})})}
+                      ${P({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:T.val.map((e,t)=>{let[l,r,...s]=e,a=e.map(o=>typeof o),n=["string","number","string","boolean","string"],i=re(a,n);if(!i)for(let o=0;o<a.length;o++)a[o]!==n[o]?a[o]=d`<p>
+                                              <b>${a[o]}</b>
+                                          </p>`:a[o]=a[o];return[l,r,...a,i?"CORRECTA":d`<b>ERROR</b>`]})})}
                   </div>
               </div>`:""}
 `,be=()=>d`
-    ${()=>k.val!==void 0?d`<div
+    ${()=>N.val!==void 0?d`<div
                   id="testpruebas"
                   style="display: block;">
                   <h1>Resultado estructura definición pruebas</h1>
                   <p id="resultadodef">formato correcto en las pruebas de test</p>
                   <div id="div_tabla_def">
-                      ${I({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:k.val.map((e,t)=>{let[a,r,...s]=e,l=e.map(o=>typeof o),n=["number","string","number","string","boolean"],i=re(l,n);if(!i)for(let o=0;o<l.length;o++)l[o]!==n[o]?l[o]=d`<b>${l[o]}</b>`:l[o]=l[o];return[r,a,...l,i?"CORRECTA":d`<b>ERROR</b>`]})})}
+                      ${P({head:[{name:"Campo"},{name:"CampoNum Def Test"},{name:"Datos",colspan:5},{name:"Resultado"}],data:N.val.map((e,t)=>{let[l,r,...s]=e,a=e.map(o=>typeof o),n=["number","string","number","string","boolean"],i=re(a,n);if(!i)for(let o=0;o<a.length;o++)a[o]!==n[o]?a[o]=d`<b>${a[o]}</b>`:a[o]=a[o];return[r,l,...a,i?"CORRECTA":d`<b>ERROR</b>`]})})}
                   </div>
               </div>`:""}
 `,ge=()=>d`
-    ${()=>T.val!==void 0&&k.val!==void 0?d`<div
+    ${()=>T.val!==void 0&&N.val!==void 0?d`<div
                   id="pruebasentest"
                   style="display: block;">
                   <h1>Número de pruebas por test</h1>
 
                   <div id="div_tabla_test">
-                      ${I({head:[{name:"Test"},{name:"Resultado"}],data:T.val.map((e,t)=>{let[a,r,s,l,n]=e,i=k.val.filter(u=>u[1]==a&&u[0]==r),o=i.length;if(o>=2){let u=i.filter(g=>g[4]==!0).length,m=i.filter(g=>g[4]==!1).length;return u&&m?[`En el campo ${a} para el test definido ${r} existen ${o} pruebas => (${u} de exito y ${m} de error).`,"CORRECTA"]:[`En el campo ${a} para el test definido ${r} => existen ${o} pruebas, pero hace falta 1 
-                                      ${m<u?"prueba de error":"prueba de exito"}`,p.tags.b("ERROR")]}else return[`En el campo ${a} para el test definido ${r} deber\xEDa existir al menos una prueba de exito y una de error`,p.tags.b("ERROR")]})})}
+                      ${P({head:[{name:"Test"},{name:"Resultado"}],data:T.val.map((e,t)=>{let[l,r,s,a,n]=e,i=N.val.filter(u=>u[1]==l&&u[0]==r),o=i.length;if(o>=2){let u=i.filter(g=>g[4]==!0).length,m=i.filter(g=>g[4]==!1).length;return u&&m?[`En el campo ${l} para el test definido ${r} existen ${o} pruebas => (${u} de exito y ${m} de error).`,"CORRECTA"]:[`En el campo ${l} para el test definido ${r} => existen ${o} pruebas, pero hace falta 1 
+                                      ${m<u?"prueba de error":"prueba de exito"}`,p.tags.b("ERROR")]}else return[`En el campo ${l} para el test definido ${r} deber\xEDa existir al menos una prueba de exito y una de error`,p.tags.b("ERROR")]})})}
                   </div>
               </div>`:""}
-`,ve=(e,t,a)=>{let r;return function(){let l=this,n=arguments,i=function(){r=null,a||e.apply(l,n)},o=a&&!r;clearTimeout(r),r=setTimeout(i,t),o&&e.apply(l,n)}},fe=()=>d`
+`,ve=(e,t,l)=>{let r;return function(){let a=this,n=arguments,i=function(){r=null,l||e.apply(a,n)},o=l&&!r;clearTimeout(r),r=setTimeout(i,t),o&&e.apply(a,n)}},fe=()=>d`
     <div class=${()=>E.val.length==0?"valid input-container name":"input-container name"}>
         <div class="name-input-sub">
             <label for="alumnname">Nombre del alumno</label>
@@ -98,10 +98,10 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
         <input
             class="should-sort"
             type="checkbox"
-            onclick=${()=>$.val=!$.val}
-            checked=${()=>$.val} />
+            onclick=${()=>_.val=!_.val}
+            checked=${()=>_.val} />
     </div>
-`,ae=e=>{let t,a=new Map;e.forEach(o=>{o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,a.set(o.name.match(t)[1],a.get(o.name.match(t)[1])+1||1)});let r=[...a.entries()].sort((o,u)=>u[1]-o[1])[0][0],s=C.val,l=e.filter(o=>!s.find(u=>u.name===o.name)),n=s.filter(o=>(o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,t.exec(o.name)[1]===r)),i=l.filter(o=>(o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,t.exec(o.name)[1]===r));C.val=[...n,...i],c.val=r};function he(e){e.preventDefault();let t=[];e.dataTransfer.items?[...e.dataTransfer.items].forEach((a,r)=>{if(a.kind==="file"){let s=a.getAsFile();t.push(s)}}):[...e.dataTransfer.files].forEach((a,r)=>{t.push(a)}),ae(t)}var ye=()=>d`
+`,le=e=>{let t,l=new Map;e.forEach(o=>{o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,l.set(o.name.match(t)[1],l.get(o.name.match(t)[1])+1||1)});let r=[...l.entries()].sort((o,u)=>u[1]-o[1])[0][0],s=C.val,a=e.filter(o=>!s.find(u=>u.name===o.name)),n=s.filter(o=>(o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,t.exec(o.name)[1]===r)),i=a.filter(o=>(o.name.includes("pruebas")?t=/ET1_(.*?)_pruebas\.js/:o.name.includes("tests")?t=/ET1_(.*?)_tests\.js/:t=/ET1_(.*?)\.js/,t.exec(o.name)[1]===r));C.val=[...n,...i],c.val=r};function he(e){e.preventDefault();let t=[];e.dataTransfer.items?[...e.dataTransfer.items].forEach((l,r)=>{if(l.kind==="file"){let s=l.getAsFile();t.push(s)}}):[...e.dataTransfer.files].forEach((l,r)=>{t.push(l)}),le(t)}var ye=()=>d`
         <div class=${()=>E.val.length==0?"valid input-container file":"input-container file"}>
             <div class="file-input-sub">
                 <label
@@ -116,7 +116,7 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
                     id="file-drop-zone-input"
                     name="file-drop-zone-input"
                     multiple
-                    onchange=${t=>{let a=t.target.files,r=Array.from(a);ae(r)}}
+                    onchange=${t=>{let l=t.target.files,r=Array.from(l);le(r)}}
                     accept=".js" />
             </div>
             <!-- <button onclick=${()=>location.reload()}>Recargar</button> -->
@@ -129,8 +129,8 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
             <input
                 class="should-sort"
                 type="checkbox"
-                onclick=${()=>$.val=!$.val}
-                checked=${()=>$.val} />
+                onclick=${()=>_.val=!_.val}
+                checked=${()=>_.val} />
         </div>
         <h2>Alumno: ${()=>c.val.length<1?"DESCONOCIDO":c.val}</h2>
         <div class="file-list">
@@ -140,11 +140,11 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
                               </li>`)}
                       </ul>`:""}
         </div>
-    `,xe=e=>d`
+    `,$e=e=>d`
     <li class="error-item">
         <p>${e.error}</p>
-        ${e.message?d`<p>
-                  ${e.message} at line ${e.lineNumber} column ${e.columnNumber}
+        ${e.message?window?.chrome===void 0?d`<p>
+                  ${e.message} ${window?.chrome===void 0?`at line ${e.lineNumber} column ${e.columnNumber}`:""}
                   <p>${d`
                       ${e.line.substring(0,f(e.columnNumber-3,0,e.columnNumber))}
                       <b>
@@ -153,16 +153,16 @@ var z=Object,x,h=z.getPrototypeOf,B=document,S,D,N,q={isConnected:1},le=1e3,A,P=
                       ${e.line.substring(f(e.columnNumber+2,0,e.line.length))}
                   `}
                 </p>
-              </p>`:""}
+              </p>`:d`<p>${e.message}</p>`:""}
     </li>
-`,_e=()=>d`
+`,xe=()=>d`
     ${()=>E.val.length!==0?d`<div class="errors">
                   <h1>Errores</h1>
                   <ul class="error-list">
-                      ${E.val.map(e=>xe(e))}
+                      ${E.val.map(e=>$e(e))}
                   </ul>
               </div>`:""}
-`;y?p.add(document.body,fe()):p.add(document.body,ye());p.add(document.body,d`<hr style="width:80%;" />`);p.add(document.body,_e());p.add(document.body,pe());p.add(document.body,me());p.add(document.body,be());p.add(document.body,ge());
+`;y?p.add(document.body,fe()):p.add(document.body,ye());p.add(document.body,d`<hr style="width:80%;" />`);p.add(document.body,xe());p.add(document.body,pe());p.add(document.body,me());p.add(document.body,be());p.add(document.body,ge());
 
 
 </script>
